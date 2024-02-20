@@ -1,1 +1,2 @@
-<div class="container" *ngIf="!isLoggedIn()">Please login to continue</div>  
+<div class="container" *ngIf="!isLoggedIn()">Please login to continue</div> 
+<div class="container" *ngIf="isLoggedIn()">Welcome {{ userName() }}!</div> 
