@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
@@ -14,6 +15,7 @@ import { EditTripComponent } from './edit-trip/edit-trip.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { DeleteTripComponent } from './delete-trip/delete-trip.component';
 
 @NgModule({
   declarations: [
@@ -24,11 +26,13 @@ import { LoginComponent } from './login/login.component';
     EditTripComponent,
     NavbarComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    DeleteTripComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule

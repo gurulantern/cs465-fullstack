@@ -7,7 +7,16 @@
           {{ trip.perPerson | currency:'USD':true}} per person</p>
       <p class="card-text" [innerHTML]="trip.description"></p>
       <div *ngIf="isLoggedIn()">
-        <button (click)="editTrip(trip)" class="btn btn-info">Edit</button>
+
+        <button (click)="editTrip(trip)" 
+        class="btn btn-info">
+        Edit</button>
+
+        <button (click)="deleteTrip(trip)" 
+        class="btn btn-info" 
+        style="width: 5rem; background-color: #C60606; border-color: #C60606">
+        Delete</button>
+        
       </div>
   </div>
 </div>

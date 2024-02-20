@@ -62,6 +62,37 @@ const tripsAddTrip = async (req, res) => {
   );
 }
 
+const tripsDeleteTrip = async (req, res) => {
+  getUser(req, res,
+    (req, res) => {
+      console.log("inside trips.js on server #tripsDeleteTrip");
+      Trip.findOneAndDelete({'code': req.params.tripCode})
+        .then(trip => {
+          if (!trip) {
+            return res
+              .status(404)
+              .send({
+                message: "Trip not found with code " + req.params.tripCode
+            });
+          }
+            return res
+        }).catch(err => {
+          if (err.kind === 'ObjectId') {
+            return res
+              .status(404)
+              .send({
+                message: "Trip not found with code " + req.params.tripCode
+              });
+          }
+          return res
+            .status(500) // server error
+            .json(err);
+        })
+        console.log("return from delete trip");
+    });
+}
+
+
 const tripsUpdateTrip = async (req, res) => {    
   console.log(req.body);    
   getUser(req, res,
@@ -103,14 +134,15 @@ const tripsUpdateTrip = async (req, res) => {
 } 
 
 const getUser = (req, res, callback) => {
-  if (req.payload && req.payload.email) {
+  console.log('in getUser');
+  if (req.auth && req.auth.email) {
     User
-      .findOne({ email: req.payload.email })
+      .findOne({ email: req.auth.email })
       .exec((err, user) => {
         if (!user) {
           return res
             .status(404)
-            .json({ "message": "User not found"});
+            .json({ "message": "User not found. Can't find email"});
         } else if (err) {
           console.log(err);
           return res
@@ -122,7 +154,7 @@ const getUser = (req, res, callback) => {
   } else {
     return res
       .status(404)
-      .json({ "message": "User not found" });
+      .json({ "message": "User not found. In API, needs email" });
   }
 };
 
@@ -130,6 +162,8 @@ module.exports = {
     tripsList,
     tripsFindCode,
     tripsAddTrip,
-    tripsUpdateTrip
+    tripsUpdateTrip,
+    tripsDeleteTrip,
+    getUser,
 };
 
