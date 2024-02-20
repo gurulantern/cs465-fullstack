@@ -4,7 +4,7 @@
     <form (ngSubmit)="onLoginSubmit(evt)">            
       <div role="alert" *ngIf="formErrors" class="alert alert-danger">{{ formError }}</div>            
       <div class="form-group">                
-        <label for="email">Email Address</label>  78                 
+        <label for="email">Email Address</label>            
         <input type="email" class="form-control" id="email" name="email" placeholder="Enter email address" [(ngModel)]="credentials.email">            
       </div>            
       <div class="form-group">                
