@@ -1,0 +1,15 @@
+    {{#if session.email}}
+        <button type="button" onclick="window.location.href='/profile'">Profile</button>
+        <button type="button" onclick="window.location.href='/profile'">Logout</button>
+    {{else}}
+        <div id="login">
+            <form class="login-form">
+                <input type="email" name="email" placeholder="Email">
+                <input type="password" name="password" placeholder="Password">
+                <div class="button-container">
+                    <button type="submit">Login</button>
+                    <button type="button" onclick="window.location.href='/registration'">Register</button>
+                </div>
+            </form>
+        </div>
+    {{/if}}

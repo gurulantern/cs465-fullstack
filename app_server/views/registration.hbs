@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!-- Website template by freewebsitetemplates.com -->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>{{title}}</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+<body>
+	<div id="background">
+		<div id="page">
+			{{> header}}
+			<div id="contents">
+				<div class="box">
+					<div>
+						<div id="contact" class="body">
+							<h1>Registration</h1>
+							<form action="/registration/registeruser" method="post">
+                                <input type="text" name="name" placeholder="Name" required>
+                                <input type="text" name="email" placeholder="Email" required>
+                                <input type="password" name="password" placeholder="Password" required>
+                                <input type="submit" value="Register">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{{> footer}}
+	</div>
+</body>
+</html>

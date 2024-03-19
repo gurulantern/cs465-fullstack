@@ -11,8 +11,14 @@ const authController = require('../controllers/authentication');
 const tripsController = require('../controllers/trips');
 
 router
+    .route('/adminlogin')
+    .post(authController.adminLogin);
+router
     .route('/login')
     .post(authController.login);
+router
+    .route('/adminregister')
+    .post(authController.adminRegister);
 router
     .route('/register')
     .post(authController.register);

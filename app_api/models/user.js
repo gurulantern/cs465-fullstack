@@ -11,7 +11,15 @@ const userSchema = new mongoose.Schema({
     name: {    
         type: String,    
         required: true  
-    },  
+    },
+    admin: {
+        type: Boolean,
+        default: false
+    },
+    wishlist: {
+        type: Array,
+        default: []
+    },
     hash: String,  
     salt: String 
 });  

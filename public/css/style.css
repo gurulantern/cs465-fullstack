@@ -86,6 +86,41 @@ img {
 	background-position: 0 0;
 	color: #e4e1bd;
 }
+
+#login {
+    margin-left: auto; /* Align to the right side */
+    width: 300px; /* Set a specific width */
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+}
+
+#login input[type="email"],
+#login input[type="password"] {
+    margin-bottom: 10px; /* Add margin between stacked items */
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end; /* Align buttons to the right */
+    align-items: center; /* Align items vertically */
+}
+
+#login button {
+    background-color: #6d6157;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px; /* Add margin between buttons */
+}
+
+#login button:hover {
+    background-color: #316e66;
+}
 /*------------------------------ CONTENTS ------------------------------*/
 #contents {
 	display: inline-block;

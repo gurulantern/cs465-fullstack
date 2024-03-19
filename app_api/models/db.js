@@ -11,22 +11,18 @@ const connect = () => {
     }), 1000);
 }
 
-
 mongoose.connection.on('connected', () => {
     console.log(`Mongoose connected to ${dbURI}`);
 });
-
 
 mongoose.connection.on('error', err => {
     console.log('Mongoose connection error:', err);
     return connect();
 });
 
-
 mongoose.connection.on('disconnected', () => {
     console.log('Mongoose disconnected');
 });
-
 
 if (process.platform === 'win32') {
     const rl = readLine.createInterface({
@@ -38,14 +34,12 @@ if (process.platform === 'win32') {
     });
 }  
 
-
 const gracefulShutdown = (msg, callback) => {
     mongoose.connection.close( () => {
         console.log(`Mongoose disconnected through ${msg}`);
         callback();
     });
 };  
-
 
 // For nodemon restarts
 process.once('SIGUSR2', () => {
@@ -54,22 +48,12 @@ process.once('SIGUSR2', () => {
     });
 });
 
-
 // For app termination      
 process.on('SIGINT', () => {
     gracefulShutdown('app termination', () => {
         process.exit(0);
     });
 });
-
-
-// For Heroku app termination  
-process.on('SIGTERM', () => {
-    gracefulShutdown('Heroku app shutdown', () => {
-        process.exit(0);
-    });
-});
-
 
 connect();
 

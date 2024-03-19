@@ -94,11 +94,11 @@ export class TripDataService {
   }
 
   public login(user: User): Promise<AuthResponse> {   
-    return this.makeAuthApiCall('login', user);  
+    return this.makeAuthApiCall('adminlogin', user);  
   }   
   
   public register(user: User): Promise<AuthResponse> {    
-    return this.makeAuthApiCall('register', user);  
+    return this.makeAuthApiCall('adminregister', user);  
   }   
   
   private makeAuthApiCall(urlPath: string, user: User): Promise<AuthResponse> {    

@@ -16,6 +16,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { DeleteTripComponent } from './delete-trip/delete-trip.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { DeleteTripComponent } from './delete-trip/delete-trip.component';
     NavbarComponent,
     HomeComponent,
     LoginComponent,
-    DeleteTripComponent
+    DeleteTripComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
