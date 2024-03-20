@@ -29,38 +29,3 @@
         </ul>
     </div>
 </div>
-
-<script>
-    document.getElementById('login-form').addEventListener('submit', function(event) {
-        // Prevents default form submission
-        event.preventDefault(); 
-        
-        // Get form data
-        var formData = {
-            username: document.querySelector('input[name="username"]').value,
-            password: document.querySelector('input[name="password"]').value
-        };
-        
-        // Send POST request to your Node server's login endpoint
-        fetch('/api/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        })
-        .then(response => {
-            if (response.ok) {
-                // Redirect or perform actions after successful login
-                window.location.href = '/';
-                console.log("Login successful")
-            } else {
-                // Handle login error (e.g., display error message)
-                console.error('Login failed');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    });
-</script>

@@ -15,7 +15,22 @@
 					<div>
 						<div class="body">
 							<h1>Travel</h1>
+							{{#if session}}
+							{{/if}}
 							<ul id="sites">
+							{{#if session}}
+								{{#each trips}}
+								<li>
+									<a href="/api/trips/{{this.code}}"><img src="images/{{this.image}}" alt="Img"></a>
+									<h2><a href="/travel">{{this.name}}</a></h2>
+									<form method="POST" action="/travel/addtowishlist">
+										<input type="hidden" name="tripCode" value="{{this.code}}">
+										<button type="submit">Add to Wishlist</button>
+									</form>
+									{{{this.description}}}
+								</li>
+								{{/each}}
+							{{else}}
 								{{#each trips}}
 								<li>
 									<a href="/api/trips/{{this.code}}"><img src="images/{{this.image}}" alt="Img"></a>
@@ -23,6 +38,7 @@
 									{{{this.description}}}
 								</li>
 								{{/each}}
+							{{/if}}
 							</ul>
 						</div>
 					</div>
@@ -31,5 +47,6 @@
 		</div>
 		{{> footer}}
 	</div>
+
 </body>
 </html>

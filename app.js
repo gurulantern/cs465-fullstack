@@ -22,6 +22,8 @@ const usersRouter = require('./app_server/routes/users');
 const apiRouter = require('./app_api/routes/index');
 const profileRouter = require('./app_server/routes/profile');
 const registrationRouter = require('./app_server/routes/registration');
+const loginRouter = require('./app_server/routes/login');
+const logoutRouter = require('./app_server/routes/logout');
 
 // handlebars and passport
 const hbs = require('hbs');
@@ -41,12 +43,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
-app.use(session({
-  name: 'travlr',
-    secret: [process.env.JWT_SECRET],
-    maxAge: 24 * 60 * 60 * 1000 // 24 hours
-}))
 
+app.use(session({
+  name: 'session',
+  secret: [
+    process.env.JWT_SECRET,
+  ],
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}))
 
 // set up api
 app.use('/api', (req, res, next) => {
@@ -64,7 +68,9 @@ app.use('/meals', mealsRouter);
 app.use('/news', newsRouter);
 app.use('/rooms', roomsRouter);
 app.use('/profile', profileRouter);
-app.use('/registration', registrationRouter)
+app.use('/registration', registrationRouter);
+app.use('/login', loginRouter);
+app.use('/logout', logoutRouter);
 app.use('/travel', travelRouter);
 app.use('/users', usersRouter);
 app.use('/api', apiRouter);

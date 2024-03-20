@@ -1,15 +1,34 @@
-    {{#if session.email}}
+{{#if session}}
+    <div id="loggedin">
         <button type="button" onclick="window.location.href='/profile'">Profile</button>
-        <button type="button" onclick="window.location.href='/profile'">Logout</button>
-    {{else}}
-        <div id="login">
-            <form class="login-form">
-                <input type="email" name="email" placeholder="Email">
-                <input type="password" name="password" placeholder="Password">
-                <div class="button-container">
-                    <button type="submit">Login</button>
-                    <button type="button" onclick="window.location.href='/registration'">Register</button>
-                </div>
-            </form>
-        </div>
-    {{/if}}
+        <button type="button" onclick="logout()">Logout</button>
+    </div>
+{{else}}
+    <div id="login">
+        <form action="/login" method="post">
+            <input type="email" name="email" placeholder="Email">
+            <input type="password" name="password" placeholder="Password">
+            <div class="button-container">
+                <button type="submit">Login</button>
+                <button type="button" onclick="window.location.href='/registration'">Register</button>
+            </div>
+        </form>
+    </div>
+{{/if}}
+
+<script>
+    function logout() {
+        fetch('/logout', {
+            method: 'POST',
+            credentials: 'same-origin'
+        })
+        .then(response => {
+            if (response.redirected) {
+                window.location.href = response.url;
+            }
+        })
+        .catch(error => {
+            console.error('Error logging out:', error);
+        });
+    }
+</script>

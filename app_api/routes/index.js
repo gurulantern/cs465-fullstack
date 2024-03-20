@@ -31,5 +31,13 @@ router
     .get(tripsController.tripsFindCode)
     .put(auth, tripsController.tripsUpdateTrip)
     .delete(auth, tripsController.tripsDeleteTrip);
+router
+    .route('/wishlist')
+    .get(auth, tripsController.getWishList)
+router
+    .route('/wishlists/:tripCode')
+    .post(auth, tripsController.addToWishList)
+    .delete(auth, tripsController.removeFromWishList);
+
 
 module.exports = router;

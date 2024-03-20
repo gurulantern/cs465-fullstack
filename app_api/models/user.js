@@ -16,10 +16,10 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    wishlist: {
-        type: Array,
-        default: []
-    },
+    wishlist: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'trips'
+    }],
     hash: String,  
     salt: String 
 });  

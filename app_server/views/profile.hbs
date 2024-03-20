@@ -14,16 +14,19 @@
 				<div class="box">
 					<div>
 						<div class="body">
-							<h1>Wishlist</h1>
-							<ul id="sites">
-								{{#each trips}}
-								<li>
-									<a href="/api/trips/{{this.code}}"><img src="images/{{this.image}}" alt="Img"></a>
-									<h2><a href="/travel">{{this.name}}</a></h2>
-									{{{this.description}}}
-								</li>
-								{{/each}}
-							</ul>
+							<h1>Profile</h1>
+                            <h2>Wishlist</h2>
+                            <ul id="wishlist">
+                                {{#each trips}}
+                                <li>
+                                    <h2><a href="/travel">{{this.name}}</a></h2>
+                                    <h3>{{this.resort}}</h3>
+                                    <p>Price per person: ${{this.perPerson}}</p>
+                                    <p>Length: {{this.length}}</p>
+                                    <button class="removeFromWishlistBtn" data-trip-code="{{this.code}}">Remove from Wishlist</button>
+                                </li>
+                                {{/each}}
+                            </ul>
 						</div>
 					</div>
 				</div>
@@ -31,5 +34,45 @@
 		</div>
 		{{> footer}}
 	</div>
+
 </body>
 </html>
+
+<script>
+// JavaScript to send DELETE request when the button is clicked
+document.querySelectorAll('.removeFromWishlistBtn').forEach(button => {
+    button.addEventListener('click', function() {
+        const tripCode = this.getAttribute('data-trip-code'); // Retrieve the trip code value
+        // Confirm with the user before sending the request
+        if (confirm('Are you sure you want to remove this item from your wishlist?')) {
+            // Send a DELETE request using fetch API
+            fetch('/travel/removefromwishlist', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    // You can include any necessary authorization headers here
+                },
+                body: JSON.stringify({
+                    tripCode: tripCode // Pass the trip code as part of the request body
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Reload the page after a short delay
+                    setTimeout(() => {
+                        location.reload(); // Reload the current page
+                    }, 100); // Adjust the delay time (in milliseconds) as needed
+                } else {
+                    // Handle error response
+                    alert('Failed to remove item from wishlist');
+                }
+            })
+            .catch(error => {
+                // Handle network errors
+                console.error('Error:', error);
+                alert('Failed to remove item from wishlist due to a network error');
+            });
+        }
+    });
+});
+</script>

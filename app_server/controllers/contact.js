@@ -1,6 +1,7 @@
 const contact = (req, res) => {
     pageTitle = 'Travlr Getaways - Contact';
-    res.render('contact', {title: pageTitle})
+    console.info(req.session.token);
+    res.render('contact', {title: pageTitle, session: req.cookies.userToken});
 };
 
 module.exports = {
