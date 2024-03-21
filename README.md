@@ -29,7 +29,7 @@ If they have not registered, they can click on the "Register" button to be redir
 
 ## Registration Page  
 
-![register](doc/register.jpg)
+![register](doc/registration.jpg)
 
 Once they have registered, they will be logged in and can see the logged-in components, the profile button, the logout button, and the profile page.
 
