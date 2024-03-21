@@ -17,6 +17,7 @@
 							<h1>Profile</h1>
                             <h2>Wishlist</h2>
                             <ul id="wishlist">
+                                <!-- Each iterator over trips for user wish list -->
                                 {{#each trips}}
                                 <li>
                                     <h2><a href="/travel">{{this.name}}</a></h2>
@@ -38,6 +39,7 @@
 </body>
 </html>
 
+<!-- JavaScript for the removeFromWishlistBtn to call /travel/removefromwishlist route -->
 <script>
 // JavaScript to send DELETE request when the button is clicked
 document.querySelectorAll('.removeFromWishlistBtn').forEach(button => {
@@ -58,10 +60,8 @@ document.querySelectorAll('.removeFromWishlistBtn').forEach(button => {
             })
             .then(response => {
                 if (response.ok) {
-                    // Reload the page after a short delay
-                    setTimeout(() => {
-                        location.reload(); // Reload the current page
-                    }, 100); // Adjust the delay time (in milliseconds) as needed
+                    // Reload the page to reflect wishlist change
+                    location.reload()
                 } else {
                     // Handle error response
                     alert('Failed to remove item from wishlist');

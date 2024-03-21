@@ -25,6 +25,7 @@ passport.use(new LocalStrategy({
     } 
 ));
 
+// Added for enhancement to separate logins for admin and users
 // Admin strategy that checks admin boolean field in DB
 passport.use('admin-local', new LocalStrategy({    
     usernameField: 'email'  

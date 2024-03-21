@@ -5,6 +5,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+// Added for enhancement so app could save cookie
 const session = require('cookie-session');
 
 require('./app_api/models/db');
@@ -20,6 +21,7 @@ const roomsRouter = require('./app_server/routes/rooms');
 const travelRouter = require('./app_server/routes/travel');
 const usersRouter = require('./app_server/routes/users');
 const apiRouter = require('./app_api/routes/index');
+// Added for enhancement
 const profileRouter = require('./app_server/routes/profile');
 const registrationRouter = require('./app_server/routes/registration');
 const loginRouter = require('./app_server/routes/login');
@@ -67,13 +69,14 @@ app.use('/contact', contactRouter);
 app.use('/meals', mealsRouter);
 app.use('/news', newsRouter);
 app.use('/rooms', roomsRouter);
+app.use('/travel', travelRouter);
+app.use('/users', usersRouter);
+app.use('/api', apiRouter);
+// Added for enhancement
 app.use('/profile', profileRouter);
 app.use('/registration', registrationRouter);
 app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
-app.use('/travel', travelRouter);
-app.use('/users', usersRouter);
-app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(err, req, res, next) {

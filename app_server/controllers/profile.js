@@ -39,6 +39,8 @@ const renderWishlist = (req, res, responseBody) => {
             message = 'No trips exist in the wishlist';
         }
     }
+
+    // Pass title for template, trips for rendering and session token for login rendering
     res.render('profile', {
         title: pageTitle,
         trips: responseBody,

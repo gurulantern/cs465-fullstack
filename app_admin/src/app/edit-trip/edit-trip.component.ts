@@ -47,6 +47,7 @@ export class EditTripComponent implements OnInit {
       })  
     }   
     
+    // Listens for submit of edit trip form in SPA. Uses Trip service
     onSubmit() {    
       this.submitted = true;     
       

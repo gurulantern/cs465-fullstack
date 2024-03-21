@@ -15,10 +15,12 @@ export class NavbarComponent implements OnInit {
   ) { }  
   ngOnInit() { }  
   
+  // For conditional rendering
   public isLoggedIn(): boolean {    
     return this.authenticationService.isLoggedIn();  
   }  
   
+  // Listens to the logout event from html in SPA
   private onLogout(): void {    
     return this.authenticationService.logout(); 
     this.router.navigateByUrl('#');

@@ -24,10 +24,12 @@ export class TripListingComponent implements OnInit {
     private router: Router
     ) {}
   
+  // Calls add trip api method
   private addTrip(): void {
     this.router.navigate(['add-trip']);
   }
 
+  // Calls get trips api method
   private getTrips(): void {
     console.log('Inside TripListingCOmponent#getTrips')
     this.message = 'Searching for Trips';
@@ -39,6 +41,7 @@ export class TripListingComponent implements OnInit {
         })
   }
 
+  // For conditional rendering
   public isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
   }

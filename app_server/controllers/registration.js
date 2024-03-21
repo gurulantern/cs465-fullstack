@@ -5,6 +5,7 @@ const apiOptions = {
 
 const registration = (req, res) => {
     pageTitle = 'Travlr Getaways - Registration';
+    // Pass title for template and session token for login rendering
     res.render('registration', {title: pageTitle, session: req.cookies.userToken});
 };
 

@@ -19,7 +19,8 @@ export class TripDataService {
 
   private apiBaseUrl = 'http://localhost:3000/api/';
   private tripUrl = `${this.apiBaseUrl}trips/`;
-
+  
+  // Add trip to database when logged in
   public addTrip(formData: Trip): Promise<Trip> {
     console.log('Inside TripDataService#addTrip');
     const httpOptions = {
@@ -33,6 +34,7 @@ export class TripDataService {
       .catch(this.handleError);
   }
 
+  // Gets trip according to trip code
   public getTrip(tripCode: string): Promise<Trip> {
     console.log('Inside TripDataService#getTrip(tripCode)'); 
     const httpOptions = {
@@ -46,6 +48,7 @@ export class TripDataService {
       .catch(this.handleError); 
   }
   
+  // Gets all trips
   public getTrips(): Promise<Trip[]> {
     console.log('Inside TripDataService#getTrips');
     const httpOptions = {
@@ -59,6 +62,7 @@ export class TripDataService {
       .catch(this.handleError);
   }
 
+  // Updates trip according to trip code
   public updateTrip(formData: Trip): Promise<Trip> {    
     console.log('Inside TripDataService#upateTrip');    
     console.log(formData);    
@@ -74,7 +78,8 @@ export class TripDataService {
       .catch(this.handleError);  
   } 
 
-    public deleteTrip(tripCode: string): Promise<Trip> {
+  // Deletes trip according to trip code
+  public deleteTrip(tripCode: string): Promise<Trip> {
     console.log('Inside TripDataService#deleteTrip(tripCode)');
     const httpOptions = {
       headers: new HttpHeaders({
@@ -93,10 +98,12 @@ export class TripDataService {
     return Promise.reject(error.message || error);
   }
 
+  // Admin login. Uses admin-local passport strategy
   public login(user: User): Promise<AuthResponse> {   
     return this.makeAuthApiCall('adminlogin', user);  
   }   
   
+  // Admin register. Uses admin-local passport strategy
   public register(user: User): Promise<AuthResponse> {    
     return this.makeAuthApiCall('adminregister', user);  
   }   

@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   
   ngOnInit() {}   
   
+  // Called upon submit of login form in SPA
   public onLoginSubmit(): void {    
     this.formError = '';    
     if (!this.credentials.email || !this.credentials.password) {       
@@ -33,6 +34,7 @@ export class LoginComponent implements OnInit {
     }  
   }   
   
+  // Calls the authenticaiton service for login
   private doLogin(): void {    
     this.authenticationService.login(this.credentials)      
       .then(() => this.router.navigateByUrl('#'))      

@@ -135,6 +135,7 @@ const tripsUpdateTrip = async (req, res) => {
   );
 } 
 
+//  GET user for a callback function
 const getUser = (req, res, callback) => {
   console.log('in getUser');
   if (req.auth && req.auth.email) {
@@ -162,6 +163,7 @@ const getUser = (req, res, callback) => {
   }
 };
 
+// GET :/travel/wishlist - lists all trips in the wishlist
 const getWishList = (req, res, callback) => {
   if (!req.auth || !req.auth.email) {
     return res.status(401).json({ message: "Unauthorized" });
@@ -182,6 +184,7 @@ const getWishList = (req, res, callback) => {
   });
 }
 
+// POST :/travel/wishlists/:tripcode - adds a trip to the wishlist
 const addToWishList = (req, res) => {
   if (!req.auth || !req.auth.email) {
     return res.status(401).json({ message: "Unauthorized" });
@@ -214,14 +217,16 @@ const addToWishList = (req, res) => {
   });
 };
 
+// DELETE :/travel/wishlists/:tripcode - removes a trip from the wishlist
 const removeFromWishList = (req, res) => {
   if (!req.auth || !req.auth.email) {
     return res.status(401).json({ message: "Unauthorized" });
   }
+  // Use trip code in params
   const tripCode = req.params.tripCode;
 
   User.findOne({ email: req.auth.email })
-    .populate('wishlist') // Populate the 'wishlist' array with trip objects
+    .populate('wishlist') // Populate wishlist as the array holds references and not actual trip data
     .exec((err, user) => {
       if (err) {
         return res.status(500).json({ message: "Internal Server Error" });
@@ -254,6 +259,7 @@ module.exports = {
     tripsUpdateTrip,
     tripsDeleteTrip,
     getUser,
+    // Added for enhancement
     getWishList,
     addToWishList,
     removeFromWishList

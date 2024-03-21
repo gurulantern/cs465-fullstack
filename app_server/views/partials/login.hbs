@@ -1,3 +1,4 @@
+{{!-- Login Conditional that checks if session is defined --}}
 {{#if session}}
     <div id="loggedin">
         <button type="button" onclick="window.location.href='/profile'">Profile</button>
@@ -16,6 +17,7 @@
     </div>
 {{/if}}
 
+{{!-- Logout script to call POST for /logout in app router --}}
 <script>
     function logout() {
         fetch('/logout', {

@@ -17,10 +17,12 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
+  // For conditional rendering 
   public isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
   }
 
+  // Grabs user's name for display in navbar
   public userName(): string {
     return this.authService.getCurrentUser().name
   }

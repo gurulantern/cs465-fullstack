@@ -3,9 +3,11 @@ const apiOptions = {
   server: 'http://localhost:3000'
 };
 
+// Used axios to save cookie to browser to save user session
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
+    // Use regular client login and not admin login
     const path = '/api/login';
 
     const response = await axios.post(`${apiOptions.server}${path}`, {

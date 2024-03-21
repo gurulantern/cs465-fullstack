@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 const User = require('./app_api/models/user');
 
+// Migration script for enhancement to update user schema
 async function migrate() {
     try {
-        // Connect to MongoDB
         await mongoose.connect('mongodb://localhost:27017/travlr', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
@@ -19,7 +19,6 @@ async function migrate() {
             user.admin = user.admin || true;
             user.wishlist = user.wishlist || [];
 
-            // Save the updated user document
             await user.save();
         }
 

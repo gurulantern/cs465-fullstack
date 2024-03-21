@@ -1,6 +1,6 @@
 const contact = (req, res) => {
     pageTitle = 'Travlr Getaways - Contact';
-    console.info(req.session.token);
+     // Pass title for template and session token for login rendering
     res.render('contact', {title: pageTitle, session: req.cookies.userToken});
 };
 

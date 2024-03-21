@@ -19,16 +19,19 @@ export class TripCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // Mainly to check login status for conditional rendering
   public isLoggedIn(): boolean {
     return this.authenticationService.isLoggedIn();
   }
 
+  // Calls edit trip api method
   private editTrip(trip:Trip): void {
     localStorage.removeItem("tripCode");
     localStorage.setItem("tripCode", trip.code);
     this.router.navigate(['edit-trip']);
   }
   
+  // Calls delete trip api method
   private deleteTrip(trip: Trip): void {
     localStorage.removeItem("tripCode");
     localStorage.setItem("tripCode", trip.code);

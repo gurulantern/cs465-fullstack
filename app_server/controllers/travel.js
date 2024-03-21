@@ -4,6 +4,7 @@ const apiOptions = {
     server: 'http://localhost:3000' 
 }; 
 
+// Render the travel list
 const renderTravelList = (req, res, responseBody) => {
     let message = null;
     console.info('>> travelController.renderTravelList');
@@ -16,6 +17,8 @@ const renderTravelList = (req, res, responseBody) => {
             message = 'No trips exist in our database';
         }
     }
+
+    // Arguments for hbs template
     res.render('travel',
         {
             title: pageTile,
@@ -47,6 +50,7 @@ const travelList = (req, res) => {
     );
 }
 
+// Add to user's wishlist through button on trip list item
 const addToWishList = (req, res) => {
     // Get the token from the cookie
     const token = req.cookies.userToken;
@@ -85,6 +89,7 @@ const addToWishList = (req, res) => {
     });
 };
 
+// Remove an item from the logged in user wishlist
 const removeFromWishList = (req, res) => {
     // Get the token from the cookie
     const token = req.cookies.userToken;

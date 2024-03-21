@@ -87,25 +87,23 @@ img {
 	color: #e4e1bd;
 }
 
+/*------------------------------ Login/Logged Out ------------------------------*/
 #login {
-    margin-left: auto; /* Align to the right side */
-    width: 300px; /* Set a specific width */
-}
-
-.login-form {
-    display: flex;
-    flex-direction: column; /* Stack items vertically */
+    margin-left: auto; 
+    width: 200px; 
 }
 
 #login input[type="email"],
 #login input[type="password"] {
-    margin-bottom: 10px; /* Add margin between stacked items */
+    margin-bottom: 10px; 
+	margin-left: auto;
+	width: calc(100% - 16px); 
 }
 
-.button-container {
+#login .button-container {
     display: flex;
-    justify-content: flex-end; /* Align buttons to the right */
-    align-items: center; /* Align items vertically */
+    justify-content: flex-end; 
+    align-items: center; 
 }
 
 #login button {
@@ -124,7 +122,7 @@ img {
 
 #loggedin {
     margin-left: auto; 
-    width:150px; 
+    width:100px; 
 	display: flex;
 	flex-direction: column;
 }
@@ -140,7 +138,8 @@ img {
 }
 
 #loggedin button:hover{
-	background-color: #6d6157;
+	background-color: #e4e1bd;
+	color:#6d6157;
 }
 /*------------------------------ CONTENTS ------------------------------*/
 #contents {
@@ -163,7 +162,7 @@ img {
 }
 #contents h2 {
 	font-size: 22px;
-	margin: 0 0 30px;
+	margin: 0 0 15px;
 }
 #contents h2 a {
 	color: #2c9688;
@@ -510,6 +509,106 @@ hr {
 	display: block;
 	text-transform: uppercase;
 }
+
+/** Wishlist **/
+#addwishlist button[type="submit"] {
+    background-color: #316e66; 
+    color: white; 
+    border: none; 
+    padding: 8px 16px; 
+    border-radius: 4px; 
+	margin-bottom: 15px;
+    cursor: pointer; 
+}
+
+#addwishlist button[type="submit"]:hover {
+    background-color: #e4e1bd;
+    color: #6d6157; 
+}
+
+#wishlist {
+    list-style: none; 
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px; 
+	padding: 0%;
+}
+
+#wishlist li {
+    background-color: #f4f4f4;
+    border-radius: 8px; 
+    border: 1px solid #594334; 
+    padding: 20px;
+}
+
+#wishlist li h2 {
+    margin-top: 0; 
+}
+
+#wishlist li h3 {
+    margin-top: 5px;
+	padding: 0px;
+}
+
+#wishlist li p {
+    margin: 0px;
+	padding: 0px;
+}
+
+.removeFromWishlistBtn {
+    background-color: #316e66; /* Set the background color for the button */
+    color: white; /* Set the text color */
+    border: none; /* Remove default button border */
+    padding: 8px 16px; /* Adjust padding as needed */
+    border-radius: 4px; /* Apply border radius for rounded corners */
+    cursor: pointer; /* Change cursor on hover */
+}
+
+.removeFromWishlistBtn:hover {
+    background-color: #e4e1bd; /* Change background color on hover */
+    color: #6d6157; /* Change text color on hover */
+}
+/** Registration **/
+#registration {
+    margin: 0 auto; 
+    border: none; 
+    text-align: center; 
+}
+
+#registration h1 {
+    margin-top: 0; 
+}
+
+#registration form {
+	width: 300px;
+	margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+#registration input[type="text"],
+#registration input[type="password"],
+#registration input[type="submit"] {
+    width: calc(100% - 20px); 
+    margin-bottom: 15px; 
+    padding: 10px; 
+    box-sizing: border-box; 
+}
+
+#registration input[type="submit"] {
+    background-color: #316e66; 
+    color: white; 
+    border: none; 
+    cursor: pointer; 
+}
+
+#registration input[type="submit"]:hover {
+    background-color: #e4e1bd; 
+    color: #6d6157; 
+}
+
 /*------------------------------ FOOTER ------------------------------*/
 #footer {
 	color: #594334;

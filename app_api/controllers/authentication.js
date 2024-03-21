@@ -2,6 +2,7 @@ const passport = require('passport');
 const mongoose = require('mongoose'); 
 const User = mongoose.model('users');  
 
+// POST :/registration/registeruser - User registration on express site
 const register = (req, res) => {  
     if (!req.body.name || !req.body.email || !req.body.password) {    
         return res      
@@ -27,6 +28,7 @@ const register = (req, res) => {
     }) 
 };  
 
+// POST :/login - User login on express site
 const login = (req, res) => {  
     if (!req.body.email || !req.body.password) {    
         return res      
@@ -52,6 +54,7 @@ const login = (req, res) => {
     })(req, res); 
 };  
 
+// POST :/login - logs in an admin user from SPA
 const adminLogin = (req, res) => {
     if (!req.body.email || !req.body.password) {
         return res
@@ -83,7 +86,7 @@ const adminLogin = (req, res) => {
     })(req, res);
 }
 
-// Register option for the admin side of application
+// POST :/registration - registers a new admin from SPA
 const adminRegister = (req, res) => {  
     if (!req.body.name || !req.body.email || !req.body.password) {    
         return res      

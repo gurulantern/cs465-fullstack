@@ -14,10 +14,12 @@ export class AuthenticationService {
     private tripDataService: TripDataService
   ) { }
 
+  // Used for checking log in status
   public getToken(): string {
     return this.storage.getItem('travlr-token');
   }
 
+  // Saves token for session
   public saveToken(token: string): void {    
     this.storage.setItem('travlr-token', token);  
   }   
@@ -32,10 +34,12 @@ export class AuthenticationService {
       .then((authResp: AuthResponse) => this.saveToken(authResp.token));  
   }   
   
+  // Removes token
   public logout(): void {    
     this.storage.removeItem('travlr-token');  
   }   
   
+  // Checks if user is logged in
   public isLoggedIn(): boolean {    
     const token: string = this.getToken();    
     if (token) {      
@@ -46,6 +50,7 @@ export class AuthenticationService {
     }  
   }   
   
+  // Returns current user info
   public getCurrentUser(): User {    
     if (this.isLoggedIn()) {      
       const token: string = this.getToken();      
