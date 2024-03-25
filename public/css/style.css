@@ -1,4 +1,11 @@
-/* Website template by freewebsitetemplates.com */
+/**
+ * Name: style.css
+ * Version: 2.0
+ * Author: Alex Ho
+ * Contact: alex.tianzhi.ho@gmail.com
+ * Date: 2024-03-25
+ * Description: CSS stylesheet for entire express website. Divided into sections for different elements
+ */
 body {
 	background: #ffb744 url(../images/bg-body.jpg) repeat left bottom;
 	font-family: "Times New Roman", Times, serif;
@@ -556,17 +563,17 @@ hr {
 }
 
 .removeFromWishlistBtn {
-    background-color: #316e66; /* Set the background color for the button */
-    color: white; /* Set the text color */
-    border: none; /* Remove default button border */
-    padding: 8px 16px; /* Adjust padding as needed */
-    border-radius: 4px; /* Apply border radius for rounded corners */
-    cursor: pointer; /* Change cursor on hover */
+    background-color: #316e66; 
+    color: white; 
+    border: none; 
+    padding: 8px 16px; 
+    border-radius: 4px; 
+    cursor: pointer; 
 }
 
 .removeFromWishlistBtn:hover {
-    background-color: #e4e1bd; /* Change background color on hover */
-    color: #6d6157; /* Change text color on hover */
+    background-color: #e4e1bd; 
+    color: #6d6157; 
 }
 /** Registration **/
 #registration {

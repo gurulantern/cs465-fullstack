@@ -1,4 +1,13 @@
-
+/**
+ * Name: travel.js
+ * Version: 2.0
+ * Author: Alex Ho
+ * Contact: alex.tianzhi.ho@gmail.com
+ * Date: 2024-03-25
+ * Description: Controller for travel page. Used in app.js. Makes API calls for adding and removing to wishlist, and getting trips
+ * for rendering the travel list.
+ * Issues: Possibly consider moving removeWishlist to profile as that is where the button is. 
+ */
 const request = require('request'); 
 const apiOptions = {    
     server: 'http://localhost:3000' 
@@ -8,8 +17,8 @@ const apiOptions = {
 const renderTravelList = (req, res, responseBody) => {
     let message = null;
     console.info('>> travelController.renderTravelList');
-    let pageTile =  process.env.npm_package_description + ' - Travel';
-    if (!(responseBody instanceof Array)) {
+    let pageTile =  process.env.npm_package_description + ' - Travel'; // used for rendering page
+    if (!(responseBody instanceof Array)) { // checks if response is an array
         message = 'API lookup error';
         responseBody = [];
     } else {
@@ -22,8 +31,8 @@ const renderTravelList = (req, res, responseBody) => {
     res.render('travel',
         {
             title: pageTile,
-            session: req.cookies.userToken,
-            trips: responseBody,
+            session: req.cookies.userToken, // necessary for conditional rendering
+            trips: responseBody, // trips to be rendered
             message
         }
     );
@@ -33,18 +42,21 @@ const renderTravelList = (req, res, responseBody) => {
 /* GET Travel view*/
 const travelList = (req, res) => {
     const path = '/api/trips';
+    // set options for api request
     const requestOptions = {
         url: `${apiOptions.server}${path}`,
         method: 'GET',
         json: {}
     };
     console.info('>> travelController.travelList calling ' + requestOptions.url);
+    // send out request for the trip list
     request(
         requestOptions,
         (err, { statusCode }, body) => {
             if (err) {
                 console.error(err);
             }
+            // Call renderTravel list as callback
             renderTravelList(req, res, body);
         }
     );
@@ -77,9 +89,11 @@ const addToWishList = (req, res) => {
     // Make the request
     request(requestOptions, (err, response, body) => {
         if (err) {
+            // error handling for error in request
             console.error(err);
             res.status(500).send('Error adding item to wishlist');
         } else if (response.statusCode !== 200) {
+            // error handling for error in response
             console.error(`Error: ${response.statusCode} - ${body}`);
             res.status(response.statusCode).send(body);
         } else {

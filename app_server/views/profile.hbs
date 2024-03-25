@@ -1,5 +1,12 @@
+{{! 
+Name: profile.hbs
+Version: 1.0
+Author: Alex Ho
+Contact: alex.tianzhi.ho@gmail.com
+Date: 2024-03-25
+Description: Profile page for logged in users
+}}
 <!DOCTYPE html>
-<!-- Website template by freewebsitetemplates.com -->
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -17,7 +24,7 @@
 							<h1>Profile</h1>
                             <h2>Wishlist</h2>
                             <ul id="wishlist">
-                                <!-- Each iterator over trips for user wish list -->
+                                <!-- Each iterator over trips in rendering argument for user wish list -->
                                 {{#each trips}}
                                 <li>
                                     <h2><a href="/travel">{{this.name}}</a></h2>

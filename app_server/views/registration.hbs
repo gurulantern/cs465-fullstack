@@ -1,3 +1,11 @@
+{{! 
+Name: registration.hbs
+Version: 1.0
+Author: Alex Ho
+Contact: alex.tianzhi.ho@gmail.com
+Date: 2024-03-25
+Description: Registration page for users to register data into database. Only registers non-admin users
+}}
 <!DOCTYPE html>
 <!-- Website template by freewebsitetemplates.com -->
 <html>
@@ -14,6 +22,7 @@
 				<div class="box">
 					<div>
 						<div id="registration" class="body">
+							<!-- Calls function to make API call for registering non-admin user -->
 							<h1>Registration</h1>
 							<form action="/registration/registeruser" method="post">
                                 <input type="text" name="name" placeholder="Name" required>

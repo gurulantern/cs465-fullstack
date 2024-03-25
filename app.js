@@ -1,3 +1,12 @@
+/**
+ * Name: app.js
+ * Version: 2.0
+ * Author: Alex Ho
+ * Contact: alex.tianzhi.ho@gmail.com
+ * Date: 2024-03-25
+ * Description: This is the main file for the express application.
+ */
+
 require('dotenv').config();
 
 const createError = require('http-errors');
@@ -5,6 +14,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+
 // Added for enhancement so app could save cookie
 const session = require('cookie-session');
 

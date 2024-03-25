@@ -1,3 +1,12 @@
+/**
+ * Name: migration.js
+ * Version: 1.0
+ * Author: Alex Ho
+ * Contact: alex.tianzhi.ho@gmail.com
+ * Date: 2024-03-25
+ * Description: This is a migration script for the database.
+ * To run in terminal simple use node migration.js
+ */
 const mongoose = require('mongoose');
 const User = require('./app_api/models/user');
 

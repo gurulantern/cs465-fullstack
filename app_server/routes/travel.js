@@ -1,3 +1,11 @@
+/**
+ * Name: travel.js
+ * Version: 2.0
+ * Author: Alex Ho
+ * Contact: alex.tianzhi.ho@gmail.com
+ * Date: 2024-03-25
+ * Description: Router for travel page. Used in app.js. Uses travel.js in ./controller to handle requests.
+ */
 const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/travel');

@@ -1,3 +1,9 @@
+{{! 
+Name: travel.hbs
+Author: Alex Ho
+Date: 2024-03-25
+Description: travel page for users. When logged in, the user will see an "Add to Wishlist" button on each trip item.
+}}
 <!DOCTYPE html>
 <!-- Website template by freewebsitetemplates.com -->
 <html>
@@ -21,6 +27,7 @@
 							{{#if session}}
 								{{#each trips}}
 								<li>
+									<!--Uses rendering arguments to add the trip to database. Only renders button if logged in -->
 									<a href="/api/trips/{{this.code}}"><img src="images/{{this.image}}" alt="Img"></a>
 									<h2><a href="/travel">{{this.name}}</a></h2>
 									<div id="addwishlist">
@@ -35,6 +42,7 @@
 							{{else}}
 								{{#each trips}}
 								<li>
+									<!--Uses rendering arguments to show trips. This renders if not logged in -->
 									<a href="/api/trips/{{this.code}}"><img src="images/{{this.image}}" alt="Img"></a>
 									<h2><a href="/travel">{{this.name}}</a></h2>
 									{{{this.description}}}
