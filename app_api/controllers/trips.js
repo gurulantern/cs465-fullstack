@@ -1,9 +1,23 @@
+/**
+ * Name: trips.js
+ * Version: 2.0
+ * Author: Alex Ho
+ * Contact: alex.tianzhi.ho@gmail.com
+ * Date: 2024-03-25
+ * Description: Manages trip and wishlist API calls. 
+ */
+
 const mongoose = require('mongoose');
 const { get } = require('request');
+// Use mongoose models to interact with the DB
 const Trip = mongoose.model('trips');
 const User = mongoose.model('users');
 
-// GET :/trips - lists all trips
+/**
+ * Gets trips in DB
+ * @param {*} req 
+ * @param {*} res trips, status
+ */
 const tripsList = (req, res) => {
   Trip
     .find({}) // empty object means no filter
@@ -18,10 +32,15 @@ const tripsList = (req, res) => {
     });
 };
 
-// GET :/trips/:code - finds a trip by code
+/**
+ * Finds specific trip based on code in params
+ * @param {*} req params.tripCode
+ * @param {*} res trip, status
+ */
 const tripsFindCode = async (req, res) => {
+    // Get the trip code from the URL
     Trip
-        .findOne({ 'code': req.params.tripCode })
+        .findOne({ 'code': req.params.tripCode }) // Parameter needs the trip code
         .exec((err, trip) => {
             if (!trip) {
                 return res.status(404).json({ "message": "trip not found" });
@@ -33,8 +52,13 @@ const tripsFindCode = async (req, res) => {
         });
 }
 
-// POST :/trips - adds a new trip
+/**
+ * Adds trip to DB
+ * @param {*} req trip info
+ * @param {*} res status
+ */
 const tripsAddTrip = async (req, res) => {
+  // Get the trip code from the URL
   getUser(req, res,
     (req, res) => {
     Trip
@@ -63,8 +87,13 @@ const tripsAddTrip = async (req, res) => {
   );
 }
 
-// PUT :/trips/:code - deletes a trip
+/**
+ * Deletes trip in DB based on code
+ * @param {*} req params.tripCode
+ * @param {*} res status
+ */
 const tripsDeleteTrip = async (req, res) => {
+  // Call getUser for auth
   getUser(req, res,
     (req, res) => {
       console.log("inside trips.js on server #tripsDeleteTrip");
@@ -94,7 +123,11 @@ const tripsDeleteTrip = async (req, res) => {
     });
 }
 
-// PUT :/trips/:code - updates a trip
+/**
+ * Update trip with values from form
+ * @param {*} req params.tripcode, trip values in body
+ * @param {*} res status
+ */
 const tripsUpdateTrip = async (req, res) => {    
   console.log(req.body);    
   getUser(req, res,
@@ -135,7 +168,13 @@ const tripsUpdateTrip = async (req, res) => {
   );
 } 
 
-//  GET user for a callback function
+/**
+ * Get User function to initiate callback functions
+ * Mainly for authorization
+ * @param {*} req auth.email
+ * @param {*} res 
+ * @param {*} callback Insert callback function
+ */
 const getUser = (req, res, callback) => {
   console.log('in getUser');
   if (req.auth && req.auth.email) {
@@ -163,7 +202,13 @@ const getUser = (req, res, callback) => {
   }
 };
 
-// GET :/travel/wishlist - lists all trips in the wishlist
+/**
+ * Grabs wishlist for user on frontend
+ * @param {*} req auth, email
+ * @param {*} res status
+ * @param {*} callback 
+ * @returns 
+ */
 const getWishList = (req, res, callback) => {
   if (!req.auth || !req.auth.email) {
     return res.status(401).json({ message: "Unauthorized" });
@@ -184,7 +229,12 @@ const getWishList = (req, res, callback) => {
   });
 }
 
-// POST :/travel/wishlists/:tripcode - adds a trip to the wishlist
+/**
+ * Adds a trip to wishlist
+ * @param {*} req auth, auth.email, params.tripCode
+ * @param {*} res 
+ * @returns 
+ */
 const addToWishList = (req, res) => {
   if (!req.auth || !req.auth.email) {
     return res.status(401).json({ message: "Unauthorized" });
@@ -217,7 +267,12 @@ const addToWishList = (req, res) => {
   });
 };
 
-// DELETE :/travel/wishlists/:tripcode - removes a trip from the wishlist
+/**
+ * Deletes trip from wishlist
+ * @param {*} req auth, auth.email, params.tripCode
+ * @param {*} res 
+ * @returns 
+ */
 const removeFromWishList = (req, res) => {
   if (!req.auth || !req.auth.email) {
     return res.status(401).json({ message: "Unauthorized" });

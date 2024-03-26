@@ -1,3 +1,12 @@
+/**
+ * Name: navbar.component.ts
+ * Version: 1.0
+ * Author: Alex Ho
+ * Contact: alex.tianzhi.ho@gmail.com
+ * Date: 2024-03-26
+ * Description: Navbar component for SPA
+ */
+
 import { Component, OnInit } from '@angular/core'; 
 import { AuthenticationService } from '../services/authentication.service';  
 import { Router } from '@angular/router';
@@ -15,12 +24,17 @@ export class NavbarComponent implements OnInit {
   ) { }  
   ngOnInit() { }  
   
-  // For conditional rendering
+  /**
+   * Login checker for conditional rendering
+   * @returns True if logged in and false if not
+   */
   public isLoggedIn(): boolean {    
     return this.authenticationService.isLoggedIn();  
   }  
   
-  // Listens to the logout event from html in SPA
+  /**
+   * Listens to logout event in html
+   */
   private onLogout(): void {    
     return this.authenticationService.logout(); 
     this.router.navigateByUrl('#');

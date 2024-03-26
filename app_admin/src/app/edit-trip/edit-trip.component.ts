@@ -1,3 +1,12 @@
+/**
+ * Name: edit-trp.component.ts
+ * Version: 1.0
+ * Author: Alex Ho
+ * Contact: alex.tianzhi.ho@gmail.com
+ * Date: 2024-03-26
+ * Description: Handles edit-trip form
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms"; 
 import { Router } from "@angular/router"; 
@@ -17,6 +26,10 @@ export class EditTripComponent implements OnInit {
     private tripService: TripDataService  
     ) { }   
 
+  /**
+   * On initialization, the controller grabs tripCode in storage
+   * then builds form and fills form fields with current trip values
+   */
   ngOnInit() {    
     // retrieve stashed tripId    
     let tripCode = localStorage.getItem("tripCode");    
@@ -47,7 +60,9 @@ export class EditTripComponent implements OnInit {
       })  
     }   
     
-    // Listens for submit of edit trip form in SPA. Uses Trip service
+    /**
+     * Handle form submission. Upon successful update navigates back to trip listings
+     */
     onSubmit() {    
       this.submitted = true;     
       

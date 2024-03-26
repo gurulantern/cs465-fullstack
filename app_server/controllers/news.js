@@ -8,6 +8,11 @@
  * keep logged in status
  */
 
+/**
+ * Render function for news page
+ * @param {*} req cookies.userToken
+ * @param {*} res render call
+ */
 const news = (req, res) => {
     pageTitle = 'Travlr Getaways - News';
     // Pass title for template and session token for login rendering

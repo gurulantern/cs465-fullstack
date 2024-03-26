@@ -14,14 +14,22 @@ const apiOptions = {
     server: 'http://localhost:3000' 
 }; 
 
-// Exported registration page
+/**
+ * Render function for registration page
+ * @param {*} req cookies.userToken
+ * @param {*} res render call
+ */
 const registration = (req, res) => {
     pageTitle = 'Travlr Getaways - Registration';
     // Pass title for template and session token for login rendering
     res.render('registration', {title: pageTitle, session: req.cookies.userToken});
 };
 
-// Function to register user
+/**
+ * Registers user as a client user
+ * @param {*} req name, email, password
+ * @param {*} res render with error message if failed
+ */
 const registerUser = async  (req, res) => {
     try {
         const { name, email, password } = req.body;

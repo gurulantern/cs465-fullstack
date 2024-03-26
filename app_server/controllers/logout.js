@@ -8,7 +8,10 @@
  * deleting the cookie from the browser to log user out.
  */
 
-// When called from JS script in login.hbs, cookie is cleared
+/**
+ * Clears user cookie to log user out
+ * @param {*} res clears cookie, redirects to home
+ */
 const logoutUser = async (req, res) => {
     res.clearCookie('userToken');
     res.redirect('/');

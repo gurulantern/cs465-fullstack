@@ -1,3 +1,12 @@
+/**
+ * Name: add-trip.component.ts
+ * Version: 1.0
+ * Author: Alex Ho
+ * Contact: alex.tianzhi.ho@gmail.com
+ * Date: 2024-03-26
+ * Description: Handles add trip API call
+ */
+
 import { Component, OnInit } from '@angular/core'; 
 import { FormBuilder, FormGroup, Validators } from "@angular/forms"; 
 import { Router } from "@angular/router"; 
@@ -17,7 +26,10 @@ export class AddTripComponent implements OnInit {
     private router: Router,    
     private tripService: TripDataService  
     ) { }   
-    
+  
+  /**
+   * On initialization, the controller builds form for trip values to add
+   */
   ngOnInit() {    
     this.addForm = this.formBuilder.group({      
       _id: [],      
@@ -32,6 +44,9 @@ export class AddTripComponent implements OnInit {
     })  
   }   
   
+  /**
+   * On submit, the controller makes POST request to API with the values
+   */
   onSubmit() {    
     this.submitted = true;    
     if(this.addForm.valid){      

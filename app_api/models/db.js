@@ -1,9 +1,22 @@
+/**
+ * Name: db.js
+ * Version: 1.0
+ * Author: Alex Ho
+ * Contact: alex.tianzhi.ho@gmail.com
+ * Date: 2024-03-25
+ * Description: Manages connection to MongoDB.
+ * Requires MongoDB setup.
+*/
+
+// Declare connection options
 const mongoose = require('mongoose');
 const host = process.env.DB_HOST || '127.0.0.1';
 const dbURI = `mongodb://${host}/travlr`;
 const readLine = require('readline');
 
+// Connect to DB
 const connect = () => {
+    // Set connection options and timeout    
     setTimeout(() => mongoose.connect(dbURI, {
         useNewUrlParser: true,
         useCreateIndex: true,
@@ -11,15 +24,18 @@ const connect = () => {
     }), 1000);
 }
 
+// Listener for when connected
 mongoose.connection.on('connected', () => {
     console.log(`Mongoose connected to ${dbURI}`);
 });
 
+// Listener for error in connection
 mongoose.connection.on('error', err => {
     console.log('Mongoose connection error:', err);
     return connect();
 });
 
+// Listener for when disconnected
 mongoose.connection.on('disconnected', () => {
     console.log('Mongoose disconnected');
 });
@@ -34,6 +50,7 @@ if (process.platform === 'win32') {
     });
 }  
 
+// For app termination
 const gracefulShutdown = (msg, callback) => {
     mongoose.connection.close( () => {
         console.log(`Mongoose disconnected through ${msg}`);

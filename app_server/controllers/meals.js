@@ -8,6 +8,11 @@
  * keep logged in status
  */
 
+/**
+ * Render function for meals page
+ * @param {*} req cookies.userToken
+ * @param {*} res render call
+ */
 const meals = (req, res) => {
     pageTitle = 'Travlr Getaways - Meals';
     // Pass title for template and session token for login rendering

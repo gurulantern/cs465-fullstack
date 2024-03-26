@@ -1,5 +1,17 @@
+/**
+ * Name: passport.js
+ * Version: 2.0
+ * Author: Alex Ho
+ * Contact: alex.tianzhi.ho@gmail.com
+ * Date: 2024-03-25
+ * Description: Defines the passport strategies. One strategy for local login and admin-local login
+ * Issues: Currently feels repetitive
+ */
+
+// Import passport and local strategy
 const passport = require('passport'); 
-const LocalStrategy = require('passport-local').Strategy; 
+const LocalStrategy = require('passport-local').Strategy;
+// Import mongoose and set User model 
 const mongoose = require('mongoose'); 
 const User = mongoose.model('users');  
 
@@ -10,11 +22,13 @@ passport.use(new LocalStrategy({
     (username, password, done) => {    
         User.findOne({ email: username }, (err, user) => {
             if (err) { return done(err); }      
+            // Check for username
             if (!user) {        
                 return done(null, false, {          
                     message: 'Incorrect username.'        
                 });      
             }      
+            // Check for password
             if (!user.validPassword(password)) {        
                 return done(null, false, {          
                     message: 'Incorrect password.'        
@@ -32,17 +46,20 @@ passport.use('admin-local', new LocalStrategy({
 },  
 (username, password, done) => {    
     User.findOne({ email: username }, (err, user) => {
-        if (err) { return done(err); }      
+        if (err) { return done(err); }
+        // Check if username/ email exists      
         if (!user) {        
             return done(null, false, {          
                 message: 'Incorrect username.'        
             });      
         }      
+        // Check for valid password
         if (!user.validPassword(password)) {        
             return done(null, false, {          
                 message: 'Incorrect password.'        
             });      
         }      
+        // Check for admin privilege
         if (!user.admin) {        
             return done(null, false, {          
                 message: 'You do not have admin privileges.'        

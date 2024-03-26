@@ -1,3 +1,12 @@
+/**
+ * Name: home.component.ts
+ * Version: 1.0
+ * Author: Alex Ho
+ * Contact: alex.tianzhi.ho@gmail.com
+ * Date: 2024-03-26
+ * Description: Handles homepage and prints Welcome message for current user
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service'; 
 import { User } from '../models/user';
@@ -17,12 +26,18 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  // For conditional rendering 
+  /**
+   * For conditional rendering when user is logged in
+   * @returns True if logged in and false if not
+   */
   public isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
   }
 
-  // Grabs user's name for display in navbar
+  /**
+   * Uses authService to get cuttent user info
+   * @returns User name
+   */
   public userName(): string {
     return this.authService.getCurrentUser().name
   }

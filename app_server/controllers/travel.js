@@ -39,7 +39,11 @@ const renderTravelList = (req, res, responseBody) => {
     console.info(req.cookies.userToken);
 };
 
-/* GET Travel view*/
+/**
+ * Call API for trips
+ * @param {*} req 
+ * @param {*} res 
+ */
 const travelList = (req, res) => {
     const path = '/api/trips';
     // set options for api request
@@ -62,7 +66,12 @@ const travelList = (req, res) => {
     );
 }
 
-// Add to user's wishlist through button on trip list item
+/**
+ * Add trip to wishlist
+ * @param {*} req cookies.userToken, body.tripCode
+ * @param {*} res 
+ * @returns 
+ */
 const addToWishList = (req, res) => {
     // Get the token from the cookie
     const token = req.cookies.userToken;
@@ -86,7 +95,7 @@ const addToWishList = (req, res) => {
         json: { item: tripCode } // Assuming trip code is used as the item to add to the wishlist
     };
 
-    // Make the request
+    // Make the request to add
     request(requestOptions, (err, response, body) => {
         if (err) {
             // error handling for error in request
@@ -103,7 +112,12 @@ const addToWishList = (req, res) => {
     });
 };
 
-// Remove an item from the logged in user wishlist
+/**
+ * Removes a trip from wishlist
+ * @param {*} req cookies.userToken, body.tripCode
+ * @param {*} res 
+ * @returns 
+ */
 const removeFromWishList = (req, res) => {
     // Get the token from the cookie
     const token = req.cookies.userToken;
@@ -127,7 +141,7 @@ const removeFromWishList = (req, res) => {
         json: { item: tripCode } // Assuming trip code is used as the item to add to the wishlist
     };
 
-    // Make the request
+    // Make the request to delete
     request(requestOptions, (err, response, body) => {
         if (err) {
             console.error(err);

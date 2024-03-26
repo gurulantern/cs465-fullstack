@@ -1,3 +1,14 @@
+/**
+ * Name: authentication.service.ts
+ * Version: 2.0
+ * Author: Alex Ho
+ * Contact: alex.tianzhi.ho@gmail.com
+ * Date: 2024-03-26
+ * Description: Service file for handling authorization calls
+ * Passes info to trip-data.service.ts
+ * Handles token storage for loggedIn checkers
+ */
+
 import { Inject, Injectable } from '@angular/core';
 import { BROWSER_STORAGE } from '../storage';
 import { User } from '../models/user';
@@ -14,32 +25,53 @@ export class AuthenticationService {
     private tripDataService: TripDataService
   ) { }
 
-  // Used for checking log in status
+  /**
+   * Grabs token from storage for verification
+   * @returns Token from storage
+   */
   public getToken(): string {
     return this.storage.getItem('travlr-token');
   }
 
-  // Saves token for session
+  /**
+   * Saves token to storage
+   * @param token Token to be stored in storage
+   */
   public saveToken(token: string): void {    
     this.storage.setItem('travlr-token', token);  
   }   
   
+  /**
+   * Logs in a user through trip-data.service.ts and saves token when successful
+   * @param user User object to be logged in
+   * @returns response as AuthResponse
+   */
   public login(user: User): Promise<any> {    
     return this.tripDataService.login(user)      
       .then((authResp: AuthResponse) => this.saveToken(authResp.token));  
   }   
   
+  /**
+   * Registers a user through trip-data.service.ts
+   * @param user User object to be registered
+   * @returns response as AuthResponse
+   */
   public register(user: User): Promise<any> {    
     return this.tripDataService.register(user)      
       .then((authResp: AuthResponse) => this.saveToken(authResp.token));  
   }   
   
-  // Removes token
+  /**
+   * Logouts user by removing token
+   */
   public logout(): void {    
     this.storage.removeItem('travlr-token');  
   }   
   
-  // Checks if user is logged in
+  /**
+   * Checks user login status and if token is expired
+   * @returns boolean if user is logged in
+   */
   public isLoggedIn(): boolean {    
     const token: string = this.getToken();    
     if (token) {      
@@ -50,7 +82,10 @@ export class AuthenticationService {
     }  
   }   
   
-  // Returns current user info
+  /**
+   * Checks if user is logged in and if true returns the email and name of use
+   * @returns User object of current user consisting of email and name
+   */
   public getCurrentUser(): User {    
     if (this.isLoggedIn()) {      
       const token: string = this.getToken();      

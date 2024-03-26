@@ -7,7 +7,12 @@
  * Description: Controller for about page. Used in ./routes/about.js. Passes userToken to confirm login status
  */
 
-//GET About View
+
+/**
+ * Render function for about page
+ * @param {*} req cookies.userToken
+ * @param {*} res render call
+ */
 const about = (req, res) => {
     pageTitle = 'Travlr Getaways - About';
     // Pass title for template and session token for login rendering

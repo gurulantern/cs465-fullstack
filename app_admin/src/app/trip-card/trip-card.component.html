@@ -1,3 +1,13 @@
+<!--
+  Name: trip-card.component.html
+  Version: 1.0
+  Author: Alex Ho
+  Contact: alex.tianzhi.ho@gmail.com
+  Date: 2024-03-26
+  Description: Utilizes trip input from component html to fill in data on the card
+-->
+
+<!-- Use trip fields to fill in the header and p tags -->
 <div class="card ml-4" style="width: 18rem;">
   <div class="card-header">{{ trip.name }}</div>
   <img src="assets/images/{{ trip.image }}" alt="trip thumbnail" class="card-img-top">
@@ -6,12 +16,15 @@
       <p class="card-subtitle mt-3 mb-3 text-muted">{{ trip.length }} only
           {{ trip.perPerson | currency:'USD':true}} per person</p>
       <p class="card-text" [innerHTML]="trip.description"></p>
+      <!-- Only renders button if logged in -->
       <div *ngIf="isLoggedIn()">
 
+        <!-- Button to edit a trip calls the editTrip function in controller -->
         <button (click)="editTrip(trip)" 
         class="btn btn-info">
         Edit</button>
 
+        <!-- Button to delete a trip calls the deleteTrip function in controller -->
         <button (click)="deleteTrip(trip)" 
         class="btn btn-info" 
         style="width: 5rem; background-color: #C60606; border-color: #C60606">

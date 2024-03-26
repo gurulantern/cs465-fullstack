@@ -6,6 +6,12 @@
  * Date: 2024-03-25
  * Description: Controller for contact page. Used in ./routes/contact.js. Passes userToken to confirm login status
  */
+
+/**
+ * Render function for contact page
+ * @param {*} req cookies.userToken
+ * @param {*} res render call
+ */
 const contact = (req, res) => {
     pageTitle = 'Travlr Getaways - Contact';
      // Pass title for template and session token for login rendering

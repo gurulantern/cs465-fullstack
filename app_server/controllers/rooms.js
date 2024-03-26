@@ -7,6 +7,11 @@
  * Description: Controller for rooms page. Used in app.js. Passes userToken to confirm login status
  */
 
+/**
+ * Render function for rooms page
+ * @param {*} req cookies.userToken
+ * @param {*} res render call
+ */
 const rooms = (req, res) => {
     pageTitle = 'Travlr Getaways - Rooms';
     // Pass title for template and session token for login rendering

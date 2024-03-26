@@ -1,2 +1,11 @@
+<!--
+  Name: home.component.html
+  Version: 1.0
+  Author: Alex Ho
+  Contact: alex.tianzhi.ho@gmail.com
+  Date: 2024-03-26
+  Description: Homepage html. Uses userName() to display user name.
+-->
+
 <div class="container" *ngIf="!isLoggedIn()">Please login to continue</div> 
 <div class="container" *ngIf="isLoggedIn()">Welcome {{ userName() }}!</div> 

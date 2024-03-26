@@ -1,3 +1,14 @@
+<!--
+  Name: navbar.component.html
+  Version: 2.0
+  Author: Alex Ho
+  Contact: alex.tianzhi.ho@gmail.com
+  Date: 2024-03-26
+  Description: Navbar html file for the navbar component.
+  Holds log in and logout buttons
+  Updates: Added Register Admin button for logged in users
+-->
+
 <nav class="navbar navbar-expand navbar-light bg-light">    
   <a class="navbar-brand" href="#"><img src="/assets/images/logo.png"></a>    
   <button class="navbar-toggler" type="button" datatoggle="collapse" data-target="#navbarNavAltMarkup" ariacontrols="navbarNavAltMarkup" aria-expanded="false" arialabel="Toggle navigation">      
@@ -5,7 +16,8 @@
   </button>    
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">        
     <div class="navbar-nav">            
-      <a class="nav-item nav-link active" routerLink="list-trips">Trips<span class=" sr-only ">(current)</span></a>        
+      <a class="nav-item nav-link active" routerLink="list-trips">Trips<span class=" sr-only ">(current)</span></a> 
+      <!-- ngIf checks for logged in user and renders Register Admin link -->       
       <a class="nav-item nav-link active" routerLink="registration" *ngIf="isLoggedIn()">Register Admin</a>
     </div>    
   </div>    

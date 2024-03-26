@@ -13,7 +13,12 @@ const apiOptions = {
     server: 'http://localhost:3000'
 };
 
-// Exported profile function
+/**
+ * Render function for profile
+ * Uses renderWishlist to fill out profile
+ * @param {*} req 
+ * @param {*} res 
+ */
 const profile = (req, res) => {
     // Use the api for getting all trips in user's wishlist
     const path = '/api/wishlist';
@@ -43,7 +48,12 @@ const profile = (req, res) => {
     );
 };
 
-// Render wishlist with response
+/**
+ * Render wishlist using API response
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} responseBody 
+ */
 const renderWishlist = (req, res, responseBody) => {
     let message = null;
     let pageTitle = process.env.npm_package_description + ' - Wishlist';

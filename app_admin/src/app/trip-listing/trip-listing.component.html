@@ -1,9 +1,21 @@
-<!--<pre>{{ trips | json }}</pre>-->
+<!--
+  Name: trip-listing.component.html
+  Version: 1.0
+  Author: Alex Ho
+  Contact: alex.tianzhi.ho@gmail.com
+  Date: 2024-03-26
+  Description: Uses conditional rendering to allow logged in admin users to add trips
+  Uses trip array to display trips in cards
+-->
+
+<!-- ngIf to only show button if user is logged in -->
 <div *ngIf="isLoggedIn()">
     <button (click)="addTrip()" class="btn btn-info">Add Trip</button>
 </div>
 <div class="row">
+    <!-- ngFor loop through trips array to render each trip -->
     <div *ngFor="let trip of trips">
+        <!-- Uses app-trip-card component to display each trip -->
         <app-trip-card [trip]="trip" class="card-deck mt-2"></app-trip-card>
     </div>
 </div>

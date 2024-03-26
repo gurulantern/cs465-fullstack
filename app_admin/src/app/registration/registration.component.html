@@ -1,6 +1,17 @@
+<!--
+  Name: registration.component.html
+  Version: 1.0
+  Author: Alex Ho
+  Contact: alex.tianzhi.ho@gmail.com
+  Date: 2024-03-26
+  Description: Admin registration form
+  Submit button calls controller to submit data through API
+-->
+
 <div class="row">    
   <div class="col-12 col-md-8">        
     <h2>Admin Registration</h2>        
+    <!-- ngSubmit calls controller on submit to submit data through API -->
     <form (ngSubmit)="onAdminRegistrationSubmit(evt)">            
       <div role="alert" *ngIf="formErrors" class="alert alert-danger">{{ formError }}</div>   
       <div class="form-group">

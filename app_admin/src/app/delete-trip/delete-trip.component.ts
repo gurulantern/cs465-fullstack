@@ -1,3 +1,12 @@
+/**
+ * Name: delete-trip.component.ts
+ * Version: 1.0
+ * Author: Alex Ho
+ * Contact: alex.tianzhi.ho@gmail.com
+ * Date: 2024-03-26
+ * Description: Handles delete trip API call
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { TripDataService } from '../services/trip-data.service';
@@ -18,6 +27,10 @@ export class DeleteTripComponent implements OnInit {
     private tripService: TripDataService
   ) { }
 
+  /**
+   * Checks for tripCode in local storage. Then makes DELETE 
+   * request to API with the code.
+   */
   ngOnInit() {
     let tripCode = localStorage.getItem("tripCode");
     if (!tripCode) {

@@ -12,7 +12,11 @@ const apiOptions = {
   server: 'http://localhost:3000'
 };
 
-// Used axios to save cookie to browser to save user session
+/**
+ * Logs user in
+ * @param {*} req body.email, body.password
+ * @param {*} res store cookie, redirect to travel page
+ */
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;

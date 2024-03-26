@@ -1,3 +1,12 @@
+/**
+ * Name: registration.component.ts
+ * Version: 1.0
+ * Author: Alex Ho
+ * Contact: alex.tianzhi.ho@gmail.com
+ * Date: 2024-03-26
+ * Description: Handles submits for registration forms on html
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
@@ -23,6 +32,10 @@ export class RegistrationComponent implements OnInit {
   
   ngOnInit() {}   
   
+  /**
+   * Handles submits for admin registration form. 
+   * Calls doAdminRegistration()
+   */
   public onAdminRegistrationSubmit(): void {    
     this.formError = '';    
     if (!this.credentials.name || !this.credentials.email || !this.credentials.password) {       
@@ -32,6 +45,9 @@ export class RegistrationComponent implements OnInit {
     }
   }   
   
+  /**
+   * Calls authenticationService to register user as admin
+   */
   private doAdminRegistration(): void {    
     this.authenticationService.register(this.credentials)      
       .then(() => this.router.navigateByUrl('#'))      
